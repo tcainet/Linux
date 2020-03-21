@@ -1,0 +1,62 @@
+#  ADD USER
+#-------- Create a user (called "ashley") --------#
+useradd --create-home ashley
+
+#-------- Create a user in groups "users" and "dev"
+useradd --create-home --groups users dev ashley
+
+#-------- Create a user with UID 1337
+useradd --create-home --uid 1337 ashley
+
+#-------- Create or change a user password
+passwd ashley
+<enter password>
+
+#-------- Add user to a group ("coder")
+usermod --append --groups coder ashley
+
+# DELETE USERS
+#-------- Remove a user from a group ("coder")
+gpasswd --delete ashley coder
+
+#-------- Delete a user from the system
+userdel ashley
+
+#-------- Delete a user and all user data from the system
+userdel --remove ashley
+
+# HISTORY
+#-------- Show which users are currently logged in
+w
+
+#-------- Show login history
+last
+
+# PERMISSIONS
+#-------- Set default permissions of files to 644
+echo "umask 022" >> /etc/profile
+
+#-------- Set default permissions of files to 664
+echo "umask 002" >> /etc/profile
+
+#-------- Change ownership of a file ("example.txt") to user ("ashley")
+chown ashley:users example.txt
+
+#-------- Give read permission to user, group, and others
+chmod ugo+r example.txt
+
+#-------- Give write permission to user and group
+chmod ug+w example.txt
+
+#-------- Remove write permission to a file for group members
+chmod g-w example.txt
+
+#-------- Make a file executable
+chmod +x example.txt
+
+#-------- Login as a different user
+su - ashley
+
+#-------- run a Command ("ls") as a different user
+su - ashley --command ls
+Log in as a different user Run a command as a different user
